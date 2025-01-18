@@ -1,0 +1,22 @@
+services:
+  user-service:
+    build:
+      context: ./backend/user-service
+    ports:
+      - "5000:5000"
+    environment:
+      MONGO_URI: mongodb+srv://ganeshgmv004:Manic210797@cluster0.csgisfy.mongodb.net/spotify_app?retryWrites=true&w=majority
+      JWT_SECRET: jhgfjhkgfkhjghjy89768765
+
+  spotify-service:
+    build:
+      context: ./backend/spotify-service
+    ports:
+      - "5001:5001"
+    environment:
+      USER_SERVICE_URL: "http://user-service:5000"
+      SPOTIFY_CLIENT_ID: 92d789efb30c4b1cb44a3cb46a3623fb
+      SPOTIFY_CLIENT_SECRET: a3880b00936e414c93cb02134bff8c89
+      SPOTIFY_REDIRECT_URI: "http://localhost:5001/api/spotify/callback"
+      MONGO_URI: mongodb+srv://ganeshgmv004:Manic210797@cluster0.csgisfy.mongodb.net/spotify_app?retryWrites=true&w=majority
+      JWT_SECRET: jhgfjhkgfkhjghjy89768765

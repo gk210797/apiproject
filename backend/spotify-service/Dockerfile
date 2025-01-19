@@ -1,20 +1,19 @@
-# Use a Node.js base image
 FROM node:20-alpine
 
 # Set the working directory
 WORKDIR /app
 
-# Copy only the `spotify-service` package.json and package-lock.json
-COPY package*.json ./
+# Copy the package.json and package-lock.json files
+COPY ./backend/spotify-service/package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application code
-COPY . .
+COPY ./backend/spotify-service .
 
-# Expose the service port
+# Expose the service's port
 EXPOSE 5001
 
-# Start the service
-CMD ["npm", "start"]
+# Start the application
+CMD ["node", "server.js"]

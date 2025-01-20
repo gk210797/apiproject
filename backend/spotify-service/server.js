@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const spotifyRoutes = require('./routes/spotifyRoutes');
 const startPolling = require('./services/poller');
-
+const cors = require('cors');
+app.use(cors());
 
 dotenv.config(); // Load environment variables
 

@@ -4,7 +4,7 @@ const connectDB = require('./config/db');
 const spotifyRoutes = require('./routes/spotifyRoutes');
 const startPolling = require('./services/poller');
 const cors = require('cors');
-app.use(cors());
+
 
 dotenv.config(); // Load environment variables
 
@@ -13,6 +13,7 @@ connectDB(); // Connect to MongoDB
 const app = express();
 app.use(express.json()); // Parse JSON payloads
 app.use('/api/spotify', spotifyRoutes);
+app.use(cors());
 startPolling();
 // Base route
 app.get('/', (req, res) => {
